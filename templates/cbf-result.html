@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+<body>
+
+<h1>CBF 결과</h1>
+<h2>선택 장소: {{ place_list[0]['place'] }}</h2>
+<ul>
+  {% for place in place_list %}
+  <li>{{ place['place'] }}</li>
+  {% endfor %}
+</ul>
+
+
+
+</body>
+</html>
