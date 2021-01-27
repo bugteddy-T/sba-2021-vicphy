@@ -9,7 +9,7 @@
 
 <h1>CBF 테스트</h1>
 <ul>
-  {% for place in place_list %}
+  {% for place in places %}
   <li>{{ place['id'] }}  | <a href="./cbf?place_id={{ place['id'] }}">{{ place['place'] }}</a></li>
   {% endfor %}
 </ul>

@@ -15,7 +15,9 @@
 # [START gae_python38_app]
 # [START gae_python3_app]
 from flask import Flask, render_template, request
-from modules.CBF import recommend_places, get_place_list
+from modules.CBF import *
+from modules.place import *
+import os
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -29,16 +31,30 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/cbf')
+@app.route('/test/places')
+def test_places():
+    places = get_places("./data/placelist-v.1.2.xlsx")
+    return render_template('places.html', places = places)
+
+
+@app.route('/test/map')
+def test_map():
+    parameter_dict = request.args.to_dict()
+    api_key = os.getenv('KAKAO_MAP_API_KEY')
+    place = get_place_by_id("./data/placelist-v.1.2.xlsx", int(parameter_dict['place_id']))
+    return render_template('map.html', api_key = api_key, place = place)
+
+
+@app.route('/test/cbf')
 def cbf():
     parameter_dict = request.args.to_dict()
     if len(parameter_dict) == 0:
-        place_list = get_place_list("./data/place-data-tag.csv")
-        return render_template('cbf.html', place_list = place_list)
+        places = get_places_id_place("./data/place-data-tag.csv")
+        return render_template('cbf.html', places = places)
     else:
-        place_list = recommend_places("./data/place-data-tag.csv", int(parameter_dict['place_id']))
-        print(place_list)
-        return render_template('cbf-result.html', place_list = place_list)
+        places = recommend_places("./data/place-data-tag.csv", int(parameter_dict['place_id']))
+        print(places)
+        return render_template('cbf-result.html', places = places)
 
 
 if __name__ == '__main__':

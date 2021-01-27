@@ -12,6 +12,7 @@
 # below:
 .git
 .gitignore
+web-crawler
 
 #!include:.gitignore
 

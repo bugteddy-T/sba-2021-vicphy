@@ -41,6 +41,6 @@ def recommend_places(data_file_path, place_id):
     return place_list
 
 
-def get_place_list(data_file_path):
+def get_places_id_place(data_file_path):
     place_list = pd.read_csv(data_file_path)
     return place_list[['id', 'place']].to_dict('records')
