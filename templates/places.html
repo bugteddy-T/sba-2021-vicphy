@@ -2,15 +2,15 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>OGAM X SEOUL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
 <h1>Places</h1>
 <ul>
   {% for place in places %}
-  <li>{{ place['id'] }}  | {{ place['place'] }} | <a href="./map?place_id={{ place['id'] }}" target="_blank">지도 보기</a></li>
+  <li>{{ place['id'] }}  | {{ place['place'] }} | <a href="/test/map?place_id={{ place['id'] }}" target="_blank">지도 보기</a></li>
   {% endfor %}
 </ul>
 </body>
