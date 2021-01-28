@@ -17,7 +17,9 @@
 from flask import Flask, render_template, request
 from modules.CBF import *
 from modules.place import *
+from modules.photo import *
 import os
+import random
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
@@ -26,9 +28,26 @@ app = Flask(__name__)
 # http://places4you.appspot.com/
 
 
+# bg_1, bg_2, bg_3.jpg source: google
+# bg_4.jpg source: https://pixabay.com/ko/photos/%EC%84%9C%EC%9A%B8-%EC%97%AC%EC%9D%98%EB%8F%84-%ED%95%98%EB%8A%98-%EA%B5%AC%EB%A6%84-410265/
 @app.route('/')
 def index():
-    return render_template('index.html')
+    image_list = ['bg_1.jpg', 'bg_2.jpg', 'bg_3.jpg', 'bg_4.jpg']
+    image_file = image_list[random.randint(0, len(image_list) - 1)]
+    return render_template('index.html', image_file = image_file)
+
+
+@app.route('/ogam')
+def ogam():
+    photos = get_photos("./data/photos.sqlite")
+    per_row = 3
+    return render_template('ogam.html', photos = photos, rows = int(len(photos)/per_row))
+
+
+@app.route('/test/photos')
+def test_photos():
+    photos = get_photos("./data/photos.sqlite")
+    return render_template('photos.html', photos = photos)
 
 
 @app.route('/test/places')

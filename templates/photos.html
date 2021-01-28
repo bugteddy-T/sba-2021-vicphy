@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-md mt-3 ">
+<h1 class="text-md-left">사진별 태그 가중치 수정</h1>
+    {% for photo in photos %}
+        <div class="row p-2">
+            <div class="col"><img class="img-thumbnail" src="{{ url_for('static', filename='./images/' + photo['filename']) }}"></div>
+            <div class="col">
+                <form action="" method="post">
+                    <div class="form-group">
+                        <textarea class="form-control m-1" rows="5" name="tags" required>{{ photo['tags'] }}</textarea>
+                        <input type="submit" class="btn btn-primary m-1" value="수정">
+                    </div>
+                </form>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>

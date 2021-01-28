@@ -133,3 +133,6 @@ dmypy.json
 
 # Google cloud
 app.yaml
+
+# Mac
+.DS_Store
