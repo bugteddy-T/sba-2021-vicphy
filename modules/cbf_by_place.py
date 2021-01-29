@@ -36,8 +36,8 @@ def recommend_places(place_id):
 
     review_matrix_dict = review_matrix[['id','place']].to_dict('records')
     place_list = []
-    for index in index_list:
-        place_list.append(review_matrix_dict[index])
+    for index in range(1, len(index_list)):
+        place_list.append(review_matrix_dict[index_list[index]])
     return place_list
 
 

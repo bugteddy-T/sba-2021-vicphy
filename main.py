@@ -16,8 +16,8 @@
 # [START gae_python3_app]
 from flask import Flask, render_template, request
 from modules.cbf_by_place import get_places_id_place, recommend_places
-from modules.place import get_place_by_id, get_places, get_places_by_tour_type
-from modules.photo import get_photos, get_tag_data, get_tour_type_id
+from modules.place import get_place_by_id, get_places, get_tour_type_data, get_places_by_place_list
+from modules.photo import get_photos, get_tag_data
 from modules.cbf_by_tag import get_places_by_cbf
 import os
 import random
@@ -54,6 +54,28 @@ def select():
 def result():
     parameter_dict = request.args.to_dict()
     photo_id_list = parameter_dict['id'].split(',')
+    tag_data = get_tag_data(photo_id_list)
+    print(tag_data)
+    keyword = []
+    weight = []
+    for key in tag_data:
+        keyword.append(key)
+        weight.append(tag_data[key])
+    cbf_data = get_places_by_cbf(keyword, weight)
+    tour_type_data = get_tour_type_data(cbf_data['tour_type'])
+    places_data1 = get_places_by_place_list(cbf_data['places1'])
+    places_data2 = get_places_by_place_list(cbf_data['places2'])
+    print(tour_type_data)
+    print(places_data1)
+    print(places_data2)
+    return render_template('result.html', tour_type_data = tour_type_data, places_data1 = places_data1, places_data2 = places_data2)
+
+
+'''
+@app.route('/result')
+def result():
+    parameter_dict = request.args.to_dict()
+    photo_id_list = parameter_dict['id'].split(',')
     tour_type_id_list = get_tour_type_id(photo_id_list)
     print(tour_type_id_list)
     tour_type_text = ["FLEX", "교양", "놀기", "쉬기", "보기", "배우기"]
@@ -67,6 +89,7 @@ def result():
     places_data1 = get_places_by_tour_type(tour_type_list[0]['id'])
     places_data2 = get_places_by_tour_type(tour_type_list[1]['id'])
     return render_template('result.html', tour_type_list = tour_type_list, places_data1 = places_data1, places_data2 = places_data2)
+'''
 
 
 @app.route('/place')
@@ -74,6 +97,8 @@ def place():
     parameter_dict = request.args.to_dict()
     api_key = os.getenv('KAKAO_MAP_API_KEY')
     place = get_place_by_id(int(parameter_dict['id']))
+    places = recommend_places(int(parameter_dict['id']))
+    print(places)
     return render_template('place.html', api_key = api_key, place = place)
 
 

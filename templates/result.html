@@ -16,21 +16,21 @@
 <div class="container-md mt-3">
     <h2 class="display-4 text-white m-5">오늘 당신이 하고 싶은 것은?</h2>
     <div class="row p-2">
-        <div class="col-sm-6">
-            <p class="display-6 text-white">{{ tour_type_list[0]['text'] }}</p>
+        <div class="col-sm">
+            <p class="display-6 text-white">{{ tour_type_data[0]['text'] }}</p>
             <p><img class="box img-thumbnail img-fluid d-block"
-                    src="{{ url_for('static', filename='images/type/type' + tour_type_list[0]['id'] + '.jpg') }}"></p>
+                    src="{{ url_for('static', filename='images/type/type' + tour_type_data[0]['id'] + '.jpg') }}"></p>
         </div>
-        <div class="col-sm-6">
-            <p class="display-6 text-white">{{ tour_type_list[1]['text'] }}</p>
+        <div class="col-sm">
+            <p class="display-6 text-white">{{ tour_type_data[1]['text'] }}</p>
             <p><img class="box img-thumbnail img-fluid d-block"
-                    src="{{ url_for('static', filename='images/type/type' + tour_type_list[1]['id'] + '.jpg') }}"></p>
+                    src="{{ url_for('static', filename='images/type/type' + tour_type_data[1]['id'] + '.jpg') }}"></p>
         </div>
     </div>
     {% for index in range(0, 5) %}
         <div class="row p-2">
-            <div class="col-sm-6 text-white"><a href="/place?id={{ places_data1[index]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[index]['place'] }}</a></div>
-            <div class="col-sm-6 text-white"><a href="/place?id={{ places_data2[index]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[index]['place'] }}</a></div>
+            <div class="col-sm text-white"><a href="/place?id={{ places_data1[index]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[index]['place'] }}</a></div>
+            <div class="col-sm text-white"><a href="/place?id={{ places_data2[index]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[index]['place'] }}</a></div>
         </div>
     {% endfor %}
 </div>

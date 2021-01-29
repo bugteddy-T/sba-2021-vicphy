@@ -45,13 +45,10 @@ def get_tag_data(photo_id_list):
             else:
                 tag_dict[key] = tag_dict[key] + tag[key]
     tag_sorted = sorted(tag_dict.items(), key=(lambda x: x[1]), reverse=True)
-    print(tag_sorted)
     max = 5
     index = 1
     tag_data = {}
     for key, value in tag_sorted:
-        print(key)
-        print(value)
         tag_data[key] = value
         if index >= max:
             break
