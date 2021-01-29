@@ -14,7 +14,7 @@
 <h1 class="text-md-left">사진별 태그 가중치 수정</h1>
     {% for photo in photos %}
         <div class="row p-2">
-            <div class="col"><img class="img-thumbnail" src="{{ url_for('static', filename='./images/' + photo['filename']) }}"></div>
+            <div class="col"><img class="img-thumbnail" src="{{ url_for('static', filename='images/select/' + photo['filename']) }}"></div>
             <div class="col">
                 <form action="" method="post">
                     <div class="form-group">

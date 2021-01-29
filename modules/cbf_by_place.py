@@ -4,10 +4,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 import warnings; warnings.filterwarnings('ignore')
 
 
-def recommend_places(data_file_path, place_id):
+def recommend_places(place_id):
     pd.set_option('display.max_columns', 70)                       # 출력할 열의 최대개수
     pd.set_option('display.max_colwidth', 80)                      # 출력할 열의 너비
-    review_matrix = pd.read_csv(data_file_path)
+    review_matrix = pd.read_csv("data/place-data-tag.csv")
     tag_list = []
 
     for i in range(len(review_matrix)):
@@ -41,6 +41,6 @@ def recommend_places(data_file_path, place_id):
     return place_list
 
 
-def get_places_id_place(data_file_path):
-    place_list = pd.read_csv(data_file_path)
+def get_places_id_place():
+    place_list = pd.read_csv("data/place-data-tag.csv")
     return place_list[['id', 'place']].to_dict('records')

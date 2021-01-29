@@ -15,15 +15,17 @@
 # [START gae_python38_app]
 # [START gae_python3_app]
 from flask import Flask, render_template, request
-from modules.cbf_test import *
-from modules.place import *
-from modules.photo import *
+from modules.cbf_by_place import get_places_id_place, recommend_places
+from modules.place import get_place_by_id, get_places, get_places_by_tour_type
+from modules.photo import get_photos, get_tag_data, get_tour_type_id
+from modules.cbf_by_tag import get_places_by_cbf
 import os
 import random
 
 # If `entrypoint` is not defined in app.yaml, App Engine will look for an app
 # called `app` in `main.py`.
 app = Flask(__name__)
+
 
 # http://ogamxseoul.appspot.com/
 
@@ -41,32 +43,50 @@ def index():
 
 # 13번 사진 변경 source: https://pixabay.com/ko/photos/%EC%82%BC%EA%B2%B9%EC%82%B4-%EA%B3%A0%EA%B8%B0-%EA%B5%AC%EC%9D%B4-%EB%8F%BC%EC%A7%80%EA%B3%A0%EA%B8%B0-5731404/
 # 19번 사진 변경 source: https://pixabay.com/ko/photos/%EC%95%BC%EA%B2%BD-%EC%84%9C%EC%9A%B8-korea-%ED%95%9C%EA%B0%95-3538984/
-@app.route('/ogam')
-def ogam():
-    photos = get_photos(sqlite_path="static/data/photos.sqlite")
+@app.route('/select')
+def select():
+    photos = get_photos()
     per_row = 3
-    return render_template('ogam.html', photos = photos, rows = int(len(photos)/per_row))
+    return render_template('select.html', photos = photos, rows = int(len(photos) / per_row))
 
 
-@app.route('/seoul')
-def seoul():
+@app.route('/result')
+def result():
     parameter_dict = request.args.to_dict()
-    print(parameter_dict['ogamId'])
-    photo_id_list = parameter_dict['ogamId'].split(',')
-    print(photo_id_list)
-    get_tag_data(sqlite_path="static/data/photos.sqlite", photo_id_list=photo_id_list)
-    return render_template('seoul.html')
+    photo_id_list = parameter_dict['id'].split(',')
+    tour_type_id_list = get_tour_type_id(photo_id_list)
+    print(tour_type_id_list)
+    tour_type_text = ["FLEX", "교양", "놀기", "쉬기", "보기", "배우기"]
+    tour_type_list = []
+    for tour_type_id in tour_type_id_list:
+        tour_type = {}
+        tour_type['id'] = str(tour_type_id)
+        tour_type['text'] = tour_type_text[tour_type_id - 1]
+        tour_type_list.append(tour_type)
+    print(tour_type_list)
+    places_data1 = get_places_by_tour_type(tour_type_list[0]['id'])
+    places_data2 = get_places_by_tour_type(tour_type_list[1]['id'])
+    return render_template('result.html', tour_type_list = tour_type_list, places_data1 = places_data1, places_data2 = places_data2)
+
+
+@app.route('/place')
+def place():
+    parameter_dict = request.args.to_dict()
+    api_key = os.getenv('KAKAO_MAP_API_KEY')
+    place = get_place_by_id(int(parameter_dict['id']))
+    return render_template('place.html', api_key = api_key, place = place)
+
 
 
 @app.route('/test/photos')
 def test_photos():
-    photos = get_photos("static/data/photos.sqlite")
+    photos = get_photos()
     return render_template('photos.html', photos = photos)
 
 
 @app.route('/test/places')
 def test_places():
-    places = get_places("./data/placelist-v.1.2.xlsx")
+    places = get_places()
     return render_template('places.html', places = places)
 
 
@@ -74,22 +94,20 @@ def test_places():
 def test_map():
     parameter_dict = request.args.to_dict()
     api_key = os.getenv('KAKAO_MAP_API_KEY')
-    place = get_place_by_id("./data/placelist-v.1.2.xlsx", int(parameter_dict['place_id']))
+    place = get_place_by_id(int(parameter_dict['place_id']))
     return render_template('map.html', api_key = api_key, place = place)
 
 
-'''
 @app.route('/test/cbf')
 def cbf():
     parameter_dict = request.args.to_dict()
     if len(parameter_dict) == 0:
-        places = get_places_id_place("./data/place-data-tag.csv")
+        places = get_places_id_place()
         return render_template('cbf.html', places = places)
     else:
-        places = recommend_places("./data/place-data-tag.csv", int(parameter_dict['place_id']))
+        places = recommend_places(int(parameter_dict['place_id']))
         print(places)
         return render_template('cbf-result.html', places = places)
-'''
 
 
 @app.errorhandler(404)

@@ -11,7 +11,7 @@ $(document).ready(function () {
             cnt++;
         }
         if (cnt >= max) {
-            location.href = '/seoul?ogamId=' + id_list
+            location.href = '/result?id=' + id_list
         }
     });
 });

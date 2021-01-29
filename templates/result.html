@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>OGAM X SEOUL</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+</head>
+<body>
+<div class="container-md mt-3">
+    <h2 class="display-4 text-white m-5">오늘 당신이 하고 싶은 것은?</h2>
+    <div class="row p-2">
+        <div class="col-sm-6">
+            <p class="display-6 text-white">{{ tour_type_list[0]['text'] }}</p>
+            <p><img class="box img-thumbnail img-fluid d-block"
+                    src="{{ url_for('static', filename='images/type/type' + tour_type_list[0]['id'] + '.jpg') }}"></p>
+        </div>
+        <div class="col-sm-6">
+            <p class="display-6 text-white">{{ tour_type_list[1]['text'] }}</p>
+            <p><img class="box img-thumbnail img-fluid d-block"
+                    src="{{ url_for('static', filename='images/type/type' + tour_type_list[1]['id'] + '.jpg') }}"></p>
+        </div>
+    </div>
+    {% for index in range(0, 5) %}
+        <div class="row p-2">
+            <div class="col-sm-6 text-white"><a href="/place?id={{ places_data1[index]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[index]['place'] }}</a></div>
+            <div class="col-sm-6 text-white"><a href="/place?id={{ places_data2[index]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[index]['place'] }}</a></div>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>

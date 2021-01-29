@@ -7,15 +7,21 @@ from ast import literal_eval
 import warnings; warnings.filterwarnings('ignore')
 
 
-def recommend_places(data_for_service, data_place_index_list):
+def get_places_by_cbf(tag_data):
     pd.set_option('display.max_columns', 70)  # 출력할 열의 최대개수
     pd.set_option('display.max_colwidth', 80)  # 출력할 열의 너비
     # 필요한 데이터 불러오기
-    data1 = pd.read_csv(data_for_service)
-    sim_order_table = pd.read_csv(data_place_index_list)
+    data1 = pd.read_csv('data/data-for-service.csv')
+    sim_order_table = pd.read_csv('data/place-index-list-by-cosine-similarity.csv')
 
-    keyword = ['자연', '가족', '아이', '휴식', '여유']
-    weight = [10, 5, 5, 4, 3]
+    keyword = []
+    weight = []
+    for key in tag_data:
+        keyword.append(key)
+        weight.append(tag_data[key])
+
+    print(keyword)
+    print(weight)
 
     user_data = pd.DataFrame({'keyword': keyword, 'weight': weight})
     user_data['rate'] = user_data['weight'] / (sum(user_data['weight']))
@@ -24,7 +30,6 @@ def recommend_places(data_for_service, data_place_index_list):
 
     # 가상 장소 확정 짓기 (키워드 별로 뽑기)
     keyword_order = list(user_data['keyword'])
-    print(keyword_order)
 
     # 키워드가 들어간 장소는 다 뽑기(쉬운 모델링을 위해 상위 3개만 고려함....)
     firstword_table = data1[data1['tag_list'].str.contains(keyword_order[0])]
@@ -86,8 +91,61 @@ def recommend_places(data_for_service, data_place_index_list):
     else:
         end_table = final_table
     entire_table = pd.concat([firstword_table, secondword_table, thirdword_table], axis=0)
+    # end_table이 완성이 되었다면, 여기서 1~3 개 정도의 spot을 가상으로 잡아, 유사도 높은 장소를 각가 2개씩 뽑아오기
 
-    return None
+    # 원래는 이 과정에서 여행 타입 별로 (비율적으로 분할해야한다...)
+    virtual_place_name = []
+    virtual_place_id = []
+    virtual_place_index = end_table.index.to_list()
+
+    for i in range(len(end_table)):
+        vname = end_table.iloc[i, 1]
+        vid = end_table.iloc[i, 0]
+        virtual_place_name.append(vname)
+        virtual_place_id.append(vid)
+
+    # 각 장소 별 2군데 추가로 유사도로 선정
+
+    recommend_id = []
+    recommend_name = []
+    recommend_index = []
+
+    for i in range(10):
+        recom = sim_order_table[sim_order_table['0'] == virtual_place_name[i]]
+        spot1 = recom.iloc[0, 1]
+        spot2 = recom.iloc[0, 2]
+        recommend_index.append(virtual_place_index[i])
+        recommend_index.append(spot1)
+        recommend_index.append(spot2)
+
+    for j in recommend_index:
+        find_name = sim_order_table.iloc[j, 0]
+        recommend_name.append(find_name)
+
+    for k in recommend_index:
+        find_id = data1.iloc[k, 0]
+        recommend_id.append(find_id)
+
+    # 최종 추천지 반환하기!!! (중복 당연히 제거)
+    final_recommend_id = []
+    final_recommend_name = []
+
+    for a in recommend_id:
+        if data1[data1['id'] == a].iloc[0, 3] >= 3:
+            final_recommend_id.append(a)
+    final_recommend_id = list(set(final_recommend_id))
+
+    for k in final_recommend_id:
+        final_name = data1[data1['id'] == k].iloc[0, 1]
+        final_recommend_name.append(final_name)
+
+    Recommendation = pd.DataFrame({'id': final_recommend_id, 'name': final_recommend_name})
+
+    result_dict = Recommendation[['id','name']].to_dict('records')
+    place_list = []
+    for index in result_dict:
+        place_list.append(result_dict[index])
+    return place_list
 
 
 def get_places_id_place(data_file_path):
