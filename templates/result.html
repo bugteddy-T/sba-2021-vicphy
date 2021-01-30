@@ -13,7 +13,7 @@
 </head>
 <body>
 <div class="container-md mt-3">
-    <h2 class="display-3 text-white p-2">오늘 당신이 하고 싶은 것은?</h2>
+    <h2 class="display-3 text-white p-2">오늘 당신이 하고 싶은 것?!</h2>
     <div class="row p-2">
         <div class="col-sm-6">
             <p class="display-6 text-white">{{ tour_type_data[0]['text'] }} {{ tour_type_data[0]['percent'] }}%</p>
@@ -29,60 +29,100 @@
     <div class="row p-2">
         <div class="col-sm text-white">
             {% if places_data1_len > 0 %}
-            <a href="/place?id={{ places_data1[0]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[0]['place'] }}</a>
+                {% if places_data1[0]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data1[0]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[0]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data1[0]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[0]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
         <div class="col-sm text-white">
             {% if places_data2_len > 0 %}
-            <a href="/place?id={{ places_data2[0]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[0]['place'] }}</a>
+                {% if places_data2[0]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data2[0]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[0]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data2[0]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[0]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>
     <div class="row p-2">
         <div class="col-sm text-white">
             {% if places_data1_len > 1 %}
-            <a href="/place?id={{ places_data1[1]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[1]['place'] }}</a>
+                {% if places_data1[1]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data1[1]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[1]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data1[1]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[1]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
         <div class="col-sm text-white">
             {% if places_data2_len > 1 %}
-            <a href="/place?id={{ places_data2[1]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[1]['place'] }}</a>
+                {% if places_data2[1]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data2[1]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[1]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data2[1]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[1]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>
     <div class="row p-2">
         <div class="col-sm text-white">
             {% if places_data1_len > 2 %}
-            <a href="/place?id={{ places_data1[2]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[2]['place'] }}</a>
+                {% if places_data1[2]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data1[2]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[2]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data1[2]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[2]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
         <div class="col-sm text-white">
             {% if places_data2_len > 2 %}
-            <a href="/place?id={{ places_data2[2]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[2]['place'] }}</a>
+                {% if places_data2[2]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data2[2]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[2]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data2[2]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[2]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>
     <div class="row p-2">
         <div class="col-sm text-white">
             {% if places_data1_len > 3 %}
-            <a href="/place?id={{ places_data1[3]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[3]['place'] }}</a>
+                {% if places_data1[3]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data1[3]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[3]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data1[3]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[3]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
         <div class="col-sm text-white">
             {% if places_data2_len > 3 %}
-            <a href="/place?id={{ places_data2[3]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[3]['place'] }}</a>
+                {% if places_data2[3]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data2[3]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[3]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data2[3]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[3]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>
     <div class="row p-2">
         <div class="col-sm text-white">
             {% if places_data1_len > 4 %}
-            <a href="/place?id={{ places_data1[4]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[4]['place'] }}</a>
+                {% if places_data1[4]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data1[4]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[4]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data1[4]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[4]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
         <div class="col-sm text-white">
             {% if places_data2_len > 4 %}
-            <a href="/place?id={{ places_data2[4]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[4]['place'] }}</a>
+                {% if places_data2[4]['latitude'] is not defined %}
+                    <a href="/place?id={{ places_data2[4]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[4]['place'] }}</a>
+                {% else %}
+                    <a href="{{ places_data2[4]['url_tripadvisor'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[4]['place'] }}</a>
+                {% endif %}
             {% endif %}
         </div>
     </div>

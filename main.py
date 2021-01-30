@@ -73,6 +73,10 @@ def result():
     tour_type_data = get_tour_type_data(cbf_data['tour_type'])
     places_data1 = get_places_by_place_list(cbf_data['places1'])
     places_data2 = get_places_by_place_list(cbf_data['places2'])
+    for place in places_data1:
+        print(place['latitude'])
+    for place in places_data2:
+        print(place['latitude'])
     places_data1_len = len(places_data1)
     places_data2_len = len(places_data2)
     print(tour_type_data)
