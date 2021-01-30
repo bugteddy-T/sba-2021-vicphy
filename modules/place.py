@@ -2,18 +2,18 @@ import pandas as pd
 
 
 def get_places():
-    places = pd.read_excel('data/place-data-v.1.3.xlsx')
+    places = pd.read_excel('data/place-data-v.1.4.1.xlsx')
     return places.to_dict('records')
 
 
 def get_place_by_id(id):
-    places = pd.read_excel('data/place-data-v.1.3.xlsx')
+    places = pd.read_excel('data/place-data-v.1.4.1.xlsx')
     place = places.query("id == " + str(id)).to_dict('records')[0]
     return place
 
 
 def get_places_by_tour_type(id):
-    places = pd.read_excel('data/place-data-v.1.3.xlsx')
+    places = pd.read_excel('data/place-data-v.1.4.1.xlsx')
     count_review_min = 30
     query = "tour_type == " + str(id) + " and count_review > " + str(count_review_min)
     places = places.query(query)
@@ -22,14 +22,27 @@ def get_places_by_tour_type(id):
     return places_dict
 
 
+tour_type_text = ["FLEX", "교양", "놀기", "쉬기", "보기", "배우기"]
+
+
 def get_tour_type_data(tour_type_list):
-    tour_type_text = ["FLEX", "교양", "놀기", "쉬기", "보기", "배우기"]
     tour_type_data = []
     for tour_type in tour_type_list:
         data = {}
         data['id'] = str(tour_type['index'] + 1)
         data['percent'] = str(int(tour_type['sum_weight'] * 100))
-        tour_type['text'] = tour_type_text[tour_type['index']]
+        data['text'] = tour_type_text[tour_type['index']]
+        tour_type_data.append(data)
+    return tour_type_data
+
+
+def get_tour_type_list():
+    tour_type_text = ["FLEX", "교양", "놀기", "쉬기", "보기", "배우기"]
+    tour_type_data = []
+    for index in tour_type_text:
+        data = {}
+        data['id'] = str(index + 1)
+        data['text'] = tour_type_text[index]
         tour_type_data.append(data)
     return tour_type_data
 

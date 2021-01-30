@@ -16,7 +16,7 @@
 # [START gae_python3_app]
 from flask import Flask, render_template, request
 from modules.cbf_by_place import get_places_id_place, recommend_places
-from modules.place import get_place_by_id, get_places, get_tour_type_data, get_places_by_place_list
+from modules.place import get_place_by_id, get_places, get_tour_type_data, get_places_by_place_list, get_tour_type_list
 from modules.photo import get_photos, get_tag_data
 from modules.cbf_by_tag import get_places_by_cbf
 import os
@@ -50,6 +50,14 @@ def select():
     return render_template('select.html', photos = photos, rows = int(len(photos) / per_row))
 
 
+@app.route('/type')
+def select():
+    parameter_dict = request.args.to_dict()
+    photo_id_list = parameter_dict['id'].split(',')
+    tour_type_list = get_tour_type_list()
+    return render_template('type.html', id_list = photo_id_list, tour_type_list = tour_type_list)
+
+
 @app.route('/result')
 def result():
     parameter_dict = request.args.to_dict()
@@ -65,10 +73,10 @@ def result():
     tour_type_data = get_tour_type_data(cbf_data['tour_type'])
     places_data1 = get_places_by_place_list(cbf_data['places1'])
     places_data2 = get_places_by_place_list(cbf_data['places2'])
+    places_data1_len = len(places_data1)
+    places_data2_len = len(places_data2)
     print(tour_type_data)
-    print(places_data1)
-    print(places_data2)
-    return render_template('result.html', tour_type_data = tour_type_data, places_data1 = places_data1, places_data2 = places_data2)
+    return render_template('result.html', tour_type_data = tour_type_data, places_data1 = places_data1, places_data1_len = places_data1_len, places_data2 = places_data2, places_data2_len = places_data2_len)
 
 
 '''

@@ -10,29 +10,82 @@
             integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
 </head>
 <body>
 <div class="container-md mt-3">
-    <h2 class="display-4 text-white m-5">오늘 당신이 하고 싶은 것은?</h2>
+    <h2 class="display-3 text-white p-2">오늘 당신이 하고 싶은 것은?</h2>
     <div class="row p-2">
-        <div class="col-sm">
-            <p class="display-6 text-white">{{ tour_type_data[0]['text'] }}</p>
+        <div class="col-sm-6">
+            <p class="display-6 text-white">{{ tour_type_data[0]['text'] }} {{ tour_type_data[0]['percent'] }}%</p>
             <p><img class="box img-thumbnail img-fluid d-block"
                     src="{{ url_for('static', filename='images/type/type' + tour_type_data[0]['id'] + '.jpg') }}"></p>
         </div>
-        <div class="col-sm">
-            <p class="display-6 text-white">{{ tour_type_data[1]['text'] }}</p>
+        <div class="col-sm-6">
+            <p class="display-6 text-white">{{ tour_type_data[1]['text'] }} {{ tour_type_data[0]['percent'] }}%</p>
             <p><img class="box img-thumbnail img-fluid d-block"
                     src="{{ url_for('static', filename='images/type/type' + tour_type_data[1]['id'] + '.jpg') }}"></p>
         </div>
     </div>
-    {% for index in range(0, 5) %}
-        <div class="row p-2">
-            <div class="col-sm text-white"><a href="/place?id={{ places_data1[index]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[index]['place'] }}</a></div>
-            <div class="col-sm text-white"><a href="/place?id={{ places_data2[index]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[index]['place'] }}</a></div>
+    <div class="row p-2">
+        <div class="col-sm text-white">
+            {% if places_data1_len > 0 %}
+            <a href="/place?id={{ places_data1[0]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[0]['place'] }}</a>
+            {% endif %}
         </div>
-    {% endfor %}
+        <div class="col-sm text-white">
+            {% if places_data2_len > 0 %}
+            <a href="/place?id={{ places_data2[0]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[0]['place'] }}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-sm text-white">
+            {% if places_data1_len > 1 %}
+            <a href="/place?id={{ places_data1[1]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[1]['place'] }}</a>
+            {% endif %}
+        </div>
+        <div class="col-sm text-white">
+            {% if places_data2_len > 1 %}
+            <a href="/place?id={{ places_data2[1]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[1]['place'] }}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-sm text-white">
+            {% if places_data1_len > 2 %}
+            <a href="/place?id={{ places_data1[2]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[2]['place'] }}</a>
+            {% endif %}
+        </div>
+        <div class="col-sm text-white">
+            {% if places_data2_len > 2 %}
+            <a href="/place?id={{ places_data2[2]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[2]['place'] }}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-sm text-white">
+            {% if places_data1_len > 3 %}
+            <a href="/place?id={{ places_data1[3]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[3]['place'] }}</a>
+            {% endif %}
+        </div>
+        <div class="col-sm text-white">
+            {% if places_data2_len > 3 %}
+            <a href="/place?id={{ places_data2[3]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[3]['place'] }}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="row p-2">
+        <div class="col-sm text-white">
+            {% if places_data1_len > 4 %}
+            <a href="/place?id={{ places_data1[4]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data1[4]['place'] }}</a>
+            {% endif %}
+        </div>
+        <div class="col-sm text-white">
+            {% if places_data2_len > 4 %}
+            <a href="/place?id={{ places_data2[4]['id'] }}" target="_blank" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">{{ places_data2[4]['place'] }}</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
 </body>
 </html>
