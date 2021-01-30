@@ -15,10 +15,10 @@
     <h2 class="display-4 text-white m-5">오늘 당신의 기분은 어떤가요?</h2>
     <h3 class="display-5 text-white m-5">(3장의 사진을 골라주세요!)</h3>
     {% for index in range(rows) %}
-        <div class="row p-2">
-            <div class="col-sm-4"><img class="box rounded img-fluid d-block" id="{{ photos[0 + index * 3]['id'] }}" src="{{ url_for('static', filename='images/select/' + photos[0 + index * 3]['filename']) }}"></div>
-            <div class="col-sm-4"><img class="box rounded img-fluid d-block" id="{{ photos[1 + index * 3]['id'] }}" src="{{ url_for('static', filename='images/select/' + photos[1 + index * 3]['filename']) }}"></div>
-            <div class="col-sm-4"><img class="box rounded img-fluid d-block" id="{{ photos[2 + index * 3]['id'] }}" src="{{ url_for('static', filename='images/select/' + photos[2 + index * 3]['filename']) }}"></div>
+        <div class="row">
+            <div class="col-sm-4 p-2"><img class="box rounded img-fluid d-block" id="{{ photos[0 + index * 3]['id'] }}" src="{{ url_for('static', filename='images/select/' + photos[0 + index * 3]['filename']) }}"></div>
+            <div class="col-sm-4 p-2"><img class="box rounded img-fluid d-block" id="{{ photos[1 + index * 3]['id'] }}" src="{{ url_for('static', filename='images/select/' + photos[1 + index * 3]['filename']) }}"></div>
+            <div class="col-sm-4 p-2"><img class="box rounded img-fluid d-block" id="{{ photos[2 + index * 3]['id'] }}" src="{{ url_for('static', filename='images/select/' + photos[2 + index * 3]['filename']) }}"></div>
         </div>
     {% endfor %}
 </div>

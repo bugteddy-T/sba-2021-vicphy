@@ -77,6 +77,7 @@ def result():
         print(place['latitude'])
     for place in places_data2:
         print(place['latitude'])
+    #http://127.0.0.1:5000/result?id=23,16,20 지도 없는 결과가 나옴 교복몰-사당점
     places_data1_len = len(places_data1)
     places_data2_len = len(places_data2)
     print(tour_type_data)
