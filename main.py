@@ -110,9 +110,9 @@ def place():
     parameter_dict = request.args.to_dict()
     api_key = os.getenv('KAKAO_MAP_API_KEY')
     place = get_place_by_id(int(parameter_dict['id']))
-    # places = recommend_places(int(parameter_dict['id']))[0:2]
-    # print(places)
-    return render_template('place.html', api_key = api_key, place = place)
+    places = recommend_places(int(parameter_dict['id']))[0:4]
+    print(places)
+    return render_template('place.html', api_key = api_key, place = place, places = places)
 
 
 @app.route('/robots.txt')

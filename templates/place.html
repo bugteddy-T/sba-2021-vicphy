@@ -8,6 +8,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
 </head>
 <body>
 <div id="map" class="container-fluid"></div>
@@ -41,15 +47,13 @@
     infowindow.open(map, marker);
 
     // 커스텀 오버레이를 생성하고 지도에 표시한다
-    /*
     var customOverlay = new kakao.maps.CustomOverlay({
         map: map,
-        content: '<div style="padding:0 5px;background:#fff;">HTML코드를 입력해주세요 :D</div>',
+        content: '<div class="bg-secondary p-2 rounded"><div class="row"><p class="display-6 text-white">이곳도 추천합니다!</p></div><div class="row m-2"><a href="/place?id={{ places[0]['id'] }}" target="_blank" class="btn btn-light btn-lg active" role="button" aria-pressed="true">{{ places[0]['place'] }}</a></div><div class="row m-2"><a href="/place?id={{ places[1]['id'] }}" target="_blank" class="btn btn-light btn-lg active" role="button" aria-pressed="true">{{ places[1]['place'] }}</a></div><div class="row m-2"><a href="/place?id={{ places[2]['id'] }}" target="_blank" class="btn btn-light btn-lg active" role="button" aria-pressed="true">{{ places[2]['place'] }}</a></div></div>',
         position: new kakao.maps.LatLng({{ place['latitude'] }}, {{ place['longitude']}}), // 커스텀 오버레이를 표시할 좌표
         xAnchor: 0.5, // 컨텐츠의 x 위치
-        yAnchor: -3 // 컨텐츠의 y 위치
+        yAnchor: -0.2 // 컨텐츠의 y 위치
     });
-    */
 </script>
 </body>
 </html>
