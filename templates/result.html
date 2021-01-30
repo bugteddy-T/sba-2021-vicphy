@@ -23,7 +23,7 @@
                 </p>
             </div>
             <div class="col-sm-6 p-2">
-                <p class="display-6 text-white">{{ tour_type_data[1]['text'] }} {{ tour_type_data[0]['percent'] }}%</p>
+                <p class="display-6 text-white">{{ tour_type_data[1]['text'] }} {{ tour_type_data[1]['percent'] }}%</p>
                 <p><img class="box img-thumbnail img-fluid d-block"
                         src="{{ url_for('static', filename='images/type/type' + tour_type_data[1]['id'] + '.jpg') }}">
                 </p>
@@ -32,7 +32,7 @@
         <div class="row">
             <div class="col-sm text-white p-2">
                 {% if places_data1_len > 0 %}
-                    {% if places_data1[0]['latitude'] is not defined %}
+                    {% if places_data1[0]['latitude'] is defined %}
                         <a href="/place?id={{ places_data1[0]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data1[0]['place'] }}</a>
@@ -45,7 +45,7 @@
             </div>
             <div class="col-sm text-white p-2">
                 {% if places_data2_len > 0 %}
-                    {% if places_data2[0]['latitude'] is not defined %}
+                    {% if places_data2[0]['latitude'] is defined %}
                         <a href="/place?id={{ places_data2[0]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data2[0]['place'] }}</a>
@@ -60,7 +60,7 @@
         <div class="row">
             <div class="col-sm text-white p-2">
                 {% if places_data1_len > 1 %}
-                    {% if places_data1[1]['latitude'] is not defined %}
+                    {% if places_data1[1]['latitude'] is defined %}
                         <a href="/place?id={{ places_data1[1]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data1[1]['place'] }}</a>
@@ -73,7 +73,7 @@
             </div>
             <div class="col-sm text-white p-2">
                 {% if places_data2_len > 1 %}
-                    {% if places_data2[1]['latitude'] is not defined %}
+                    {% if places_data2[1]['latitude'] is defined %}
                         <a href="/place?id={{ places_data2[1]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data2[1]['place'] }}</a>
@@ -88,7 +88,7 @@
         <div class="row">
             <div class="col-sm text-white p-2">
                 {% if places_data1_len > 2 %}
-                    {% if places_data1[2]['latitude'] is not defined %}
+                    {% if places_data1[2]['latitude'] is defined %}
                         <a href="/place?id={{ places_data1[2]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data1[2]['place'] }}</a>
@@ -101,7 +101,7 @@
             </div>
             <div class="col-sm text-white p-2">
                 {% if places_data2_len > 2 %}
-                    {% if places_data2[2]['latitude'] is not defined %}
+                    {% if places_data2[2]['latitude'] is defined %}
                         <a href="/place?id={{ places_data2[2]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data2[2]['place'] }}</a>
@@ -116,7 +116,7 @@
         <div class="row">
             <div class="col-sm text-white p-2">
                 {% if places_data1_len > 3 %}
-                    {% if places_data1[3]['latitude'] is not defined %}
+                    {% if places_data1[3]['latitude'] is defined %}
                         <a href="/place?id={{ places_data1[3]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data1[3]['place'] }}</a>
@@ -129,7 +129,7 @@
             </div>
             <div class="col-sm text-white p-2">
                 {% if places_data2_len > 3 %}
-                    {% if places_data2[3]['latitude'] is not defined %}
+                    {% if places_data2[3]['latitude'] is defined %}
                         <a href="/place?id={{ places_data2[3]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data2[3]['place'] }}</a>
@@ -144,7 +144,7 @@
         <div class="row">
             <div class="col-sm text-white p-2">
                 {% if places_data1_len > 4 %}
-                    {% if places_data1[4]['latitude'] is not defined %}
+                    {% if places_data1[4]['latitude'] is defined %}
                         <a href="/place?id={{ places_data1[4]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data1[4]['place'] }}</a>
@@ -157,7 +157,7 @@
             </div>
             <div class="col-sm text-white p-2">
                 {% if places_data2_len > 4 %}
-                    {% if places_data2[4]['latitude'] is not defined %}
+                    {% if places_data2[4]['latitude'] is defined %}
                         <a href="/place?id={{ places_data2[4]['id'] }}" target="_blank"
                            class="btn btn-secondary btn-lg active" role="button"
                            aria-pressed="true">{{ places_data2[4]['place'] }}</a>
