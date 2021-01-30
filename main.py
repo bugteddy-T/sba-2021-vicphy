@@ -51,11 +51,11 @@ def select():
 
 
 @app.route('/type')
-def select():
+def tour_type():
     parameter_dict = request.args.to_dict()
-    photo_id_list = parameter_dict['id'].split(',')
-    tour_type_list = get_tour_type_list()
-    return render_template('type.html', id_list = photo_id_list, tour_type_list = tour_type_list)
+    print(parameter_dict['id'])
+    tour_type_data = get_tour_type_list()
+    return render_template('type.html', id_list = parameter_dict['id'], tour_type_data = tour_type_data)
 
 
 @app.route('/result')

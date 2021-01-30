@@ -39,7 +39,7 @@ def get_tour_type_data(tour_type_list):
 def get_tour_type_list():
     tour_type_text = ["FLEX", "교양", "놀기", "쉬기", "보기", "배우기"]
     tour_type_data = []
-    for index in tour_type_text:
+    for index in range(len(tour_type_text)):
         data = {}
         data['id'] = str(index + 1)
         data['text'] = tour_type_text[index]

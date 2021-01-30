@@ -11,7 +11,7 @@ $(document).ready(function () {
             cnt++;
         }
         if (cnt >= max) {
-            location.href = '/result?id=' + id_list
+            location.href = '/type?id=' + id_list
         }
     });
 });
