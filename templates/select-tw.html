@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">              
+        </script>
+        <script>
+            $(document).ready(function(){
+                $(".box").click(function(){
+                    let isChecked = $(this).find('input').is(":checked");
+                    $(this).find('input').prop('checked',!isChecked);
+                    if(isChecked)
+                        $(this).css("border-color", "black");
+                    else
+                        $(this).css("border-color", "blue");  
+                    
+                    let cntChecked = $('input:checkbox:checked').length;
+                    let str="";
+                    if( cntChecked > 0 )
+                        str = cntChecked+"개 선택됨";   
+                    else
+                        str ="";
+                    $("#info").html(str);
+                });
+            });
+        </script>
+        <style>
+            .container {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+            .box {
+                background-color: #f1f1f1;
+                margin: 10px;
+                padding: 20px;
+                align-items: center;
+                flex-basis: 33%;
+                border: 3px solid;
+            }
+            .inbox {
+                width:100%;
+            }
+            input{
+                display:none;
+            }
+
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Vicphy</h1>
+             
+        </header>
+        <main>
+        <section>
+            <div class="container container1">
+            <div class="box box1">
+                <input type="checkbox" name="box1">
+                <label for="box1"><img class="inbox" img src="art museum2.jpg"></img></label>
+            </div>
+            <div class="box box2"> <input type="checkbox" name="box1">
+                <label for="box1"><img class="inbox" src="korea palace.jpg"></img></label></div>
+            <div class="box box3"> <input type="checkbox" name="box1">
+                <label for="box1"><img class="inbox" src="louvre.jpg"></img></label></div>
+            </div>
+            <div class="container container2">
+            <div class="box box1"> <input type="checkbox" name="box1">
+                <label for="box1"><img class="inbox" src="stonehenge.jpg"></img></label></div>
+            <div class="box box2"> <input type="checkbox" name="box1">
+                <label for="box1"><img class="inbox" src="book.jpg"></img></label></div>
+            <div class="box box3"> <input type="checkbox" name="box1">
+                <label for="box1"><img class="inbox" src="pork.jpg"></img></label></div>
+            </div>
+            <div class="container container3">
+            <div class="box box1"> <input type="checkbox" name="box1">
+                <label for="box1"><img class="inbox" src="wine.jpg"></img></label></div>
+            <div class="box box2"> <input type="checkbox" name="box1">
+                <label for="box1"><img class="inbox" src="family.jpg"></img></label></div>
+            <div class="box box3"> <input type="checkbox" name="box1">
+                <label for="box1"><img class="inbox" src="flowers.jpg"></img></label></div>
+            </div>
+            <div id="info">
+            
+            </div>
+        </section>
+        </main>
+        <footer>
+          <button><h2> 다음 단계</h2> </button>
+        </footer>
+    </body>
+</html>

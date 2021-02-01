@@ -4,7 +4,7 @@ from ast import literal_eval
 
 
 def get_photos():
-    conn = sqlite3.connect("static/data/photos.sqlite")
+    conn = sqlite3.connect("data/photos.sqlite")
     cursor = conn.cursor()
     cursor.execute("SELECT id, filename, tags FROM photos")
     rows = cursor.fetchall()
@@ -22,7 +22,7 @@ def get_photos():
 
 def get_photo_data_by_id(photo_id):
     print(photo_id)
-    conn = sqlite3.connect("static/data/photos.sqlite")
+    conn = sqlite3.connect("data/photos.sqlite")
     cursor = conn.cursor()
     cursor.execute("SELECT id, filename, tags FROM photos WHERE id = ?;", [photo_id])
     rows = cursor.fetchall()
