@@ -43,6 +43,20 @@
 
 추천 결과: 서대문 형무소 역사관, 강남스타일 말춤 무대, 충무공 이순신 동상, 숭례문, 문화역서울 284, 종묘, 동대문, 동대문 디자인 플라자, 영등포 중앙시장, 환기 미술관을 추천.
 
+## Google App Engine 적용 시 주의 사항
+
+app.yaml 파일을 만들고 
+
+runtime: python39
+
+env_variables:
+  KAKAO_MAP_API_KEY: "API KEY 값"
+
+위 값을 넣어줘야 함.
+KAKAO_MAP_API_KEY 값을 만들어서 넣어줘야 지도가 나타남.
+반드시 KAKAO 개발자 설정에서 localhost나 서버 주소를 넣어줘야 함.
+
+
 ## 구현 화면
 
 첫화면
