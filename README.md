@@ -61,29 +61,29 @@ KAKAO_MAP_API_KEY 값을 만들어서 넣어줘야 지도가 나타남.
 
 첫화면
 
-<img src="https://raw.githubusercontent.com/jeongyedong/sba-bigdata-team2/main/backup/web-page-screenshots/index.png" width="800"> 
+<img src="https://github.com/jeongyedong/sba-bigdata-team2/blob/main/backup/web-page-screenshots/index.png" width="800"> 
 
 
 사진 선택 화면
 
-<img src="https://raw.githubusercontent.com/jeongyedong/sba-bigdata-team2/main/backup/web-page-screenshots/select.png" width="800">
+<img src="https://github.com/jeongyedong/sba-bigdata-team2/blob/main/backup/web-page-screenshots/select.png" width="800">
 
 
 사진을 선택한 상태
 
-<img src="https://raw.githubusercontent.com/jeongyedong/sba-bigdata-team2/main/backup/web-page-screenshots/select-photos.png" width="800">
+<img src="https://github.com/jeongyedong/sba-bigdata-team2/blob/main/backup/web-page-screenshots/select-photos.png" width="800">
 
 
 여행 유형
 
-<img src="https://raw.githubusercontent.com/jeongyedong/sba-bigdata-team2/main/backup/web-page-screenshots/type.png" width="800">
+<img src="https://github.com/jeongyedong/sba-bigdata-team2/blob/main/backup/web-page-screenshots/type.png" width="800">
 
 
 결과
 
-<img src="https://raw.githubusercontent.com/jeongyedong/sba-bigdata-team2/main/backup/web-page-screenshots/result.png" width="800">
+<img src="https://github.com/jeongyedong/sba-bigdata-team2/blob/main/backup/web-page-screenshots/result.png" width="800">
 
 
 장소 지도에 표시
 
-<img src="https://raw.githubusercontent.com/jeongyedong/sba-bigdata-team2/main/backup/web-page-screenshots/place.png" width="800">
+<img src="https://github.com/jeongyedong/sba-bigdata-team2/blob/main/backup/web-page-screenshots/place.png" width="800">
